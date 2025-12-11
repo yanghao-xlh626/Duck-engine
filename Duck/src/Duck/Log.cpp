@@ -1,3 +1,4 @@
+#include "dcpch.h"
 #include "Log.h"
 namespace Duck
 {

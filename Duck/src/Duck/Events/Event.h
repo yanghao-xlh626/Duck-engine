@@ -2,10 +2,6 @@
 
 #include "Duck/Core.h"
 
-#include <string>
-#include <functional>
-
-
 namespace Duck
 {
 	//单个事件模板

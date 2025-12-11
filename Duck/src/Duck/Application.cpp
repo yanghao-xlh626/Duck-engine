@@ -1,3 +1,4 @@
+#include "dcpch.h"
 #include "Application.h"
 
 #include "Duck/Events/ApplicationEvent.h"

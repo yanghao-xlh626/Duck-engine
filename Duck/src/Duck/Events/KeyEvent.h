@@ -1,6 +1,5 @@
 #pragma once
 #include "Event.h"
-#include <sstream>
 namespace Duck
 {
 	class DUCK_API KeyEvent :public Event

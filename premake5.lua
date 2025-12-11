@@ -18,6 +18,9 @@ project "Duck"
 	targetdir ("bin/"..outputdir .. "/%{prj.name}")
 	objdir ("bin-int/"..outputdir .. "/%{prj.name}")
 
+	pchheader "dcpch.h"
+	pchsource "Duck/src/dcpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
