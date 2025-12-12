@@ -18,6 +18,9 @@ IncludeDir["GLFW"] = "Duck/vendor/GLFW/include"
 -- 包含GLFW中的premake5.lua
 include "Duck/vendor/GLFW" 
 
+project "GLFW"
+    staticruntime "on"
+
 project "Duck"
 	location "Duck"
 	kind "SharedLib"
