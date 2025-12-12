@@ -1,6 +1,7 @@
  workspace "DuckEngine"
 	architecture "x64"
 
+	startproject "Sandbox"
 	configurations
 	{
 		"Debug",
@@ -9,6 +10,13 @@
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+-- 包含相对与根目录(解决方法路径)的目录
+IncludeDir = {}
+IncludeDir["GLFW"] = "Duck/vendor/GLFW/include"
+
+-- 包含GLFW中的premake5.lua
+include "Duck/vendor/GLFW" 
 
 project "Duck"
 	location "Duck"
@@ -29,13 +37,20 @@ project "Duck"
 	includedirs
 	{
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/src/"
+		"%{prj.name}/src/",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0"
+		systemversion "latest"
 		buildoptions { "/utf-8" }
 		defines {"DC_PLATFORM_WINDOWS","DC_BUILD_DLL"}
 
@@ -46,10 +61,12 @@ project "Duck"
 
 	filter "configurations:Debug"
 		defines "DC_DEBUG"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "DC_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
@@ -84,8 +101,9 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0"
+		systemversion "latest"
 		buildoptions { "/utf-8" }
+
 		defines {"DC_PLATFORM_WINDOWS",}
 
 	filter "configurations:Debug"

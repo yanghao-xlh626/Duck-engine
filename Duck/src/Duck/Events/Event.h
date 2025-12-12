@@ -1,5 +1,6 @@
 #pragma once
 
+#include "dcpch.h"
 #include "Duck/Core.h"
 
 namespace Duck
