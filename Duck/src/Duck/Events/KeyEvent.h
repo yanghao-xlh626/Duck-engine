@@ -23,7 +23,7 @@ namespace Duck
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "KeyPressedEvent:" << m_KeyCode << "(" << GetRepeatCount << "repeats)";
+			ss << "KeyPressedEvent:" << m_KeyCode << "(" << GetRepeatCount() << "repeats)";
 			return ss.str();
 		}
 
