@@ -34,6 +34,8 @@ namespace Duck
 	{
 		friend class EventDispatcher;
 	public:
+		bool Handled = false;//标记这个事件是否被消费掉了(决定是否将这个事件向底层传递，比如点击事件发生，如果在按钮范围内就直接由按钮逻辑消费掉它）
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -43,8 +45,6 @@ namespace Duck
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
-		bool m_Handled = false;//标记这个事件是否被消费掉了(决定是否将这个事件向底层传递，比如点击事件发生，如果在按钮范围内就直接由按钮逻辑消费掉它）
 	};
 
 	class EventDispatcher
@@ -61,7 +61,7 @@ namespace Duck
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

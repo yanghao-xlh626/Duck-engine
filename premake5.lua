@@ -64,16 +64,19 @@ project "Duck"
 
 	filter "configurations:Debug"
 		defines "DC_DEBUG"
+		buildoptions "/MDd"
 		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "DC_RELEASE"
+		buildoptions "/MD"
 		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "DC_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -111,13 +114,16 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "DC_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "DC_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "DC_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
