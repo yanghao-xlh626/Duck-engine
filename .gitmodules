@@ -3,4 +3,4 @@
 	url = https://github.com/gabime/spdlog
 [submodule "Duck/vendor/GLFW"]
 	path = Duck/vendor/GLFW
-	url = https://github.com/TheCherno/glfw.git
+	url = https://github.com/yanghao-xlh626/glfw.git
