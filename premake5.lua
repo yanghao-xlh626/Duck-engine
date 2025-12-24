@@ -14,9 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- 包含相对与根目录(解决方法路径)的目录
 IncludeDir = {}
 IncludeDir["GLFW"] = "Duck/vendor/GLFW/include"
+IncludeDir["Glad"] = "Duck/vendor/Glad/include"
 
 -- 包含GLFW中的premake5.lua
 include "Duck/vendor/GLFW" 
+include "Duck/vendor/Glad"
 
 project "GLFW"
     staticruntime "on"
@@ -41,21 +43,28 @@ project "Duck"
 	{
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/src/",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "off"
 		systemversion "latest"
 		buildoptions { "/utf-8" }
-		defines {"DC_PLATFORM_WINDOWS","DC_BUILD_DLL"}
+		defines 
+		{
+			"DC_PLATFORM_WINDOWS",
+			"DC_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
+		}
 
 		postbuildcommands
 		{
